@@ -39,7 +39,7 @@ public class Email {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress("from.praveena.johnbose@capestart.com"));
         message.setRecipients(Message.RecipientType.TO,
-                InternetAddress.parse("praveena.johnbose@capestart.com"));
+                InternetAddress.parse("lihua@diesellabs.com,dhaivat@diesellabs.com,praveena.johnbose@capestart.com,akash.k@capestart.com"));
         message.setSubject("SmokeTestReport");
         message.setText("Please find the smoke test report as attached");
 
@@ -48,7 +48,8 @@ public class Email {
         Multipart multipart = new MimeMultipart();
 
         messageBodyPart = new MimeBodyPart();
-        String file = "C:\\Users\\Praveena.Johnbose\\eclipse-workspace\\Tester\\test-output\\emailable-report.html";
+        String Email_Report = System.getenv("Email_Report");
+        String file = Email_Report;
         String fileName = "emailable-report.html";
         DataSource source = new FileDataSource(file);
         messageBodyPart.setDataHandler(new DataHandler(source));

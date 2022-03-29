@@ -32,7 +32,9 @@ public class SmokeTest {
 		@BeforeTest
 		public void Login() {
 			this.driver=driver;
-			System.setProperty("webdriver.chrome.driver","C:\\Users\\Praveena.Johnbose\\Documents\\Drivers\\chromedriver.exe");
+		    String Path=System.getenv("Driver_Path");
+			System.out.println(Path);
+			System.setProperty("webdriver.chrome.driver",Path);
 			this.driver = new ChromeDriver();
 			driver.get(baseUrl);
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
