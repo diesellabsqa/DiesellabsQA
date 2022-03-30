@@ -25,8 +25,12 @@ import DieselLabsSmoke.Email;
 public class SmokeTest {
 	
 	
-		String baseUrl = "https://insights.diesellabs.com/";
+		String baseUrl = System.getenv("QA_Url");
 		public WebDriver driver;
+		String UserName = System.getenv("QA_UserName");
+		String PassWord = System.getenv("QA_Password");
+		
+		
 		
 			
 		@BeforeTest
@@ -39,9 +43,9 @@ public class SmokeTest {
 			driver.get(baseUrl);
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			WebElement Email=driver.findElement(By.name("email"));
-			Email.sendKeys("qe@diesellabs.com");
+			Email.sendKeys(UserName);
 			WebElement Password=driver.findElement(By.name("password"));
-			Password.sendKeys("XG?uG9*HH!Fw3!!");
+			Password.sendKeys(PassWord);
 			WebElement SubmitBtn=driver.findElement(By.xpath("//button[contains(@class, 'auth0-lock-submit')]"));
 			SubmitBtn.click();
 						
