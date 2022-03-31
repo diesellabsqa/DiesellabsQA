@@ -39,7 +39,7 @@ public class Email {
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress("from.praveena.johnbose@capestart.com"));
         message.setRecipients(Message.RecipientType.TO,
-                InternetAddress.parse("lihua@diesellabs.com,dhaivat@diesellabs.com,praveena.johnbose@capestart.com,akash.k@capestart.com"));
+                InternetAddress.parse("praveena.johnbose@capestart.com,akash.k@capestart.com"));
         message.setSubject("SmokeTestReport");
         message.setText("Please find the smoke test report as attached");
 
