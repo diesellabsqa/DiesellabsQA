@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.*;
 import org.openqa.selenium.By.ByCssSelector;
 import org.openqa.selenium.WebDriver.Timeouts;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.*;
 import DieselLabsSmoke.Email;
 
 
@@ -39,7 +39,12 @@ public class SmokeTest {
 		    String Path=System.getenv("Driver_Path");
 			System.out.println(Path);
 			System.setProperty("webdriver.chrome.driver",Path);
-			this.driver = new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--no-sandbox");
+			options.addArguments("--headless"); //!!!should be enabled for Jenkins
+			options.addArguments("--disable-dev-shm-usage"); //!!!should be enabled for Jenkins
+			options.addArguments("--window-size=1920x1080"); //!!!should be enabled for Jenkins
+			this.driver = new ChromeDriver(options);
 			driver.get(baseUrl);
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			WebElement Email=driver.findElement(By.name("email"));
