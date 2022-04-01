@@ -45,7 +45,7 @@ public class SmokeTest {
 		@BeforeTest
 		public void Login(String baseUrl,String UserName,String PassWord) {
 			this.driver=driver;
-		    System.out.println("********************************************")
+		    System.out.println("********************************************");
 		    String Path=System.getenv("Driver_Path");
 			System.out.println(Path);
 			System.setProperty("webdriver.chrome.driver",Path);
