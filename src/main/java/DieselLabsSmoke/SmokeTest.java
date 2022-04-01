@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.*;
 import org.testng.reporters.EmailableReporter;
+import org.openqa.selenium.chrome.*;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -48,6 +49,12 @@ public class SmokeTest {
 			System.out.println(Path);
 			System.setProperty("webdriver.chrome.driver",Path);
 			this.driver = new ChromeDriver();
+			ChromeOptions options = new ChromeOptions();
+ 			options.addArguments("--no-sandbox");
+ 			options.addArguments("--headless"); //!!!should be enabled for Jenkins
+ 			options.addArguments("--disable-dev-shm-usage"); //!!!should be enabled for Jenkins
+ 			options.addArguments("--window-size=1920x1080"); //!!!should be enabled for Jenkins
+ 			this.driver = new ChromeDriver(options);
 			
 			driver.get(baseUrl);
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
