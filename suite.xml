@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
+
     <test name= "TestCases">
+		<parameter name="baseUrl" value="http://www.insights.diesellabs.com.s3-website-us-east-1.amazonaws.com/"></parameter>
+		<parameter name="UserName" value="kavin.xavier@capestart.com"></parameter>
+		<parameter name="PassWord" value="capelabs13"></parameter>
+	    <parameter name="Email_Report" value="C:\Users\Praveena.Johnbose\eclipse-workspace\Tester\test-output\emailable-report.html"></parameter>
+ 
         <classes>
             <class name= "DieselLabsSmoke.SmokeTest"/>
-        </classes>
+			</classes>
     </test>
+	<listeners>
+	  <listener class-name="DieselLabsSmoke.Postsetup"></listener>
+	</listeners>
+
 </suite> <!-- Suite -->

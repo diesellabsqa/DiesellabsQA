@@ -1,6 +1,8 @@
 package DieselLabsSmoke;
 import org.testng.annotations.Test;
+import org.testng.xml.XmlSuite;
 import org.testng.Assert;
+import org.testng.ISuite;
 import org.testng.annotations.Test;
 import org.testng.Assert;
 import org.testng.Assert;
@@ -10,14 +12,20 @@ import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.*;
+import org.testng.reporters.EmailableReporter;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.openqa.selenium.*;
 import org.openqa.selenium.By.ByCssSelector;
 import org.openqa.selenium.WebDriver.Timeouts;
-import org.openqa.selenium.chrome.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import DieselLabsSmoke.Email;
 
 
@@ -25,26 +33,22 @@ import DieselLabsSmoke.Email;
 public class SmokeTest {
 	
 	
-		String baseUrl = System.getenv("QA_Url");
-		public WebDriver driver;
-		String UserName = System.getenv("QA_UserName");
-		String PassWord = System.getenv("QA_Password");
+		public static String baseUrl;
+		public static WebDriver driver;
+	   public static String UserName;
+	   public static String PassWord;
 		
 		
-		
-			
+	
+		@Parameters({ "baseUrl","UserName","PassWord" })
 		@BeforeTest
-		public void Login() {
+		public void Login(String baseUrl,String UserName,String PassWord) {
 			this.driver=driver;
 		    String Path=System.getenv("Driver_Path");
 			System.out.println(Path);
 			System.setProperty("webdriver.chrome.driver",Path);
-			ChromeOptions options = new ChromeOptions();
-			options.addArguments("--no-sandbox");
-			options.addArguments("--headless"); //!!!should be enabled for Jenkins
-			options.addArguments("--disable-dev-shm-usage"); //!!!should be enabled for Jenkins
-			options.addArguments("--window-size=1920x1080"); //!!!should be enabled for Jenkins
-			this.driver = new ChromeDriver(options);
+			this.driver = new ChromeDriver();
+			
 			driver.get(baseUrl);
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			WebElement Email=driver.findElement(By.name("email"));
@@ -640,11 +644,15 @@ public class SmokeTest {
 
 	}
     
-	@AfterSuite
-	public void sendemailreport() {
-		DieselLabsSmoke.Email.sendEmail("praveena.johnbose@capestart.com", "btcdptwemamksvxn");
+	
+	//@AfterSuite
+	//public void sendemailreport() throws CoreException, InterruptedException  {
+		//DieselLabsSmoke.Email.sendEmail("praveena.johnbose@capestart.com", "btcdptwemamksvxn");
 		
-	}
+	//}
+	
+	
+	
 	
 }
 	
