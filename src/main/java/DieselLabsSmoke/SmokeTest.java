@@ -55,10 +55,11 @@ public class SmokeTest {
  			options.addArguments("--disable-dev-shm-usage"); //!!!should be enabled for Jenkins
  			options.addArguments("--window-size=1920x1080"); //!!!should be enabled for Jenkins
  			this.driver = new ChromeDriver(options);
-			
+			System.out.println(baseUrl);
 			driver.get(baseUrl);
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			WebElement Email=driver.findElement(By.name("email"));
+			System.out.println(UserName);
 			Email.sendKeys(UserName);
 			WebElement Password=driver.findElement(By.name("password"));
 			Password.sendKeys(PassWord);
