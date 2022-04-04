@@ -49,7 +49,6 @@ public class SmokeTest {
 		    String Path=System.getenv("Driver_Path");
 			System.out.println(Path);
 			System.setProperty("webdriver.chrome.driver",Path);
-			this.driver = new ChromeDriver();
 			ChromeOptions options = new ChromeOptions();
  			options.addArguments("--no-sandbox");
  			options.addArguments("--headless"); //!!!should be enabled for Jenkins
